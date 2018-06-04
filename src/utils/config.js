@@ -1,16 +1,16 @@
 const APIV0 = 'http://111.231.141.23:8081'
-const APIV1 = '/api/v1'
+const APIV1 = 'http://111.231.141.23:9001'
 const APIV2 = '/api/v2'
 
 module.exports = {
-  name: '三人行支付后台管理系统',
-  prefix: 'siweiAdmin',
+  name: '三人行支付后台',
+  prefix: 'threepayAdmin',
   footerText: '三人行支付后台管理系统  © 2017 Penpo',
   logo: './logo.png',
   iconFontCSS: './iconfont.css',
   baseURL: './',
   iconFontJS: './iconfont.js',
-  CORS: [APIV0, 'http://127.0.0.1:8081'],
+  CORS: [APIV0,APIV1,APIV2],
   openPages: ['/login'],
   apiPrefix: '/api/v1',
   APIV0,

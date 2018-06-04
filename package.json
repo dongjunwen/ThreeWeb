@@ -63,5 +63,5 @@
     "build": "roadhog build",
     "build:dll": "roadhog buildDll",
     "build:new": "node version && roadhog build"
-  }
+  } 
 }

@@ -53,7 +53,6 @@ const fetch = (options) => {
     url = `http://query.yahooapis.com/v1/public/yql?q=select * from json where url='${options.url}?${encodeURIComponent(qs.stringify(options.data))}'&format=json`
     data = null
   }
-
   switch (method.toLowerCase()) {
     case 'get':
       return axios.get(url, {
