@@ -13,7 +13,7 @@ const formItemRow = { labelCol: { span: 8 }, wrapperCol: { span: 16 } }
 class AdvancedSearchForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {     
+    this.state = {
       statusTypes: [{dictCode: 'code', dictDesc: ''}],
     };
   }
@@ -23,7 +23,7 @@ class AdvancedSearchForm extends React.Component {
       request({url: `${config.APIV0}/api/sysDict/PAY_STATUS`}),
     ]).then((res) => {
       this.setState({
-        statusTypes: res[0].data      
+        statusTypes: res[0].data
       });
     }).catch((err) => {
       notification.error({
@@ -50,7 +50,7 @@ class AdvancedSearchForm extends React.Component {
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form;  
+    const { getFieldDecorator } = this.props.form;
     const statusOptions = this.state.statusTypes.map(sysDict => <Option key={sysDict.dictCode}>{sysDict.dictName}</Option>);
 
     return (
@@ -90,7 +90,7 @@ class AdvancedSearchForm extends React.Component {
             </FormItem>
           </Col>
         </Row>
-        
+
         <Row>
         <Col span={6}>
             <FormItem label="支付交易号" {...formItemRow}>
@@ -146,7 +146,7 @@ class OrderListPage extends React.Component {
       },
       {
         title: '设备ip',
-        dataIndex: 'equipId',
+        dataIndex: 'equipIp',
       },
       {
         title: '付款状态',
@@ -154,13 +154,13 @@ class OrderListPage extends React.Component {
       },
       {
         title: '创建时间',
-        dataIndex: 'createName',
+        dataIndex: 'createTime',
       },
       {
         title: '操作',
         dataIndex: 'action',
         render: (data, record) => (<div>
-          <a onClick={() => this.getOrderDetail(record.orderNo)}>查看详情</a>
+          <a onClick={() => this.getOrderDetail(record.merOrderNo)}>查看详情</a>
         </div>),
       },
     ];
@@ -192,15 +192,12 @@ class OrderListPage extends React.Component {
       })
     ).catch((err) => {
       notification.error({
-        message: '获取数据异常',
-        description: '获取数据异常',
+        message: '页面加载错误',
+        description: '获取数据列表失败',
       });
       console.warn(err);
     })
-      ;
   }
-
-  
 
   render () {
     const {visible, orderDetail, reasonVisible} = this.state;
@@ -208,7 +205,7 @@ class OrderListPage extends React.Component {
     return (
       <div className="content-inner">
         <WrappedAdvancedSearchForm search={this.getList.bind(this)} />
-       
+
         <Table
           bordered
           columns={this.columns}
@@ -216,9 +213,9 @@ class OrderListPage extends React.Component {
           dataSource={this.state.data}
           rowKey={(record, key) => record.orderNo}
           pagination={
-            { pageSize: this.state.pageSize, 
+            { pageSize: this.state.pageSize,
               onChange: this.getList.bind(this),
-               defaultCurrent: 1, 
+               defaultCurrent: 1,
                current: this.state.currentPage,
                 total: this.state.total ,
                 pageSizeOptions:['10','50', '100', '150']
@@ -235,7 +232,7 @@ class OrderListPage extends React.Component {
         >
           <OrderDetailPage orderDetail={orderDetail} readOnly />
         </Modal>
-       
+
       </div>
     )
   }

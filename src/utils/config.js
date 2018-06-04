@@ -1,4 +1,4 @@
-const APIV0 = 'http://111.231.141.23:8081'
+const APIV0 = 'http://localhost:8081'
 const APIV1 = 'http://111.231.141.23:9001'
 const APIV2 = '/api/v2'
 
@@ -10,7 +10,7 @@ module.exports = {
   iconFontCSS: './iconfont.css',
   baseURL: './',
   iconFontJS: './iconfont.js',
-  CORS: [APIV0,APIV1,APIV2],
+  CORS: [APIV0,APIV1],
   openPages: ['/login'],
   apiPrefix: '/api/v1',
   APIV0,

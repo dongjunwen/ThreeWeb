@@ -37,6 +37,7 @@ const fetch = (options) => {
   }
 
   if (fetchType === 'JSONP') {
+    console.log("fetchType====="+fetchType);
     return new Promise((resolve, reject) => {
       jsonp(url, {
         param: `${qs.stringify(data)}&callback`,
@@ -88,6 +89,7 @@ export default function request (options) {
 
   return fetch(options).then((response) => {
     const { statusText, status } = response
+
     let data = options.fetchType === 'YQL' ? response.data.query.results.json : response.data
     if (data instanceof Array) {
       data = {
@@ -101,9 +103,10 @@ export default function request (options) {
       ...data,
     })
   }).then((res) => {
-    if (res.code !== '200' && res.code !== '510') {
+    let retCode= res.retCode;
+    if (retCode !== '200' && retCode !== '510') {
       // throw new Error(res.message);
-      return Promise.reject({ success: false, statusCode: Number(res.code), code: res.code, message: res.message })
+      return Promise.reject({ success: false, statusCode: Number(retCode), code:retCode, message: res.retMsg })
     } else {
       return res;
     }
