@@ -42,8 +42,8 @@ class AdvancedSearchForm extends React.Component {
         // dddd
       } else {
         // 验证通过
-        values.startTime = values.startTime ? values.startTime.format('YYYY-MM-DD') : undefined;
-        values.endTime = values.endTime ? values.endTime.format('YYYY-MM-DD') : undefined;
+        values.tradeBeginDate = values.tradeBeginDate ? values.tradeBeginDate.format('YYYY-MM-DD') : undefined;
+        values.tradeEndDate = values.tradeEndDate ? values.tradeEndDate.format('YYYY-MM-DD') : undefined;
         this.props.search(values);
       }
     });
@@ -125,6 +125,10 @@ class OrderListPage extends React.Component {
     };
     this.columns = [
       {
+        title: '序号',
+        dataIndex: 'id',
+      },
+      {
         title: '商户订单号',
         dataIndex: 'merOrderNo',
       },
@@ -175,10 +179,11 @@ class OrderListPage extends React.Component {
     const query = {};
     Object.assign(query, { currPage: this.state.currentPage, pageSize: this.state.pageSize });
     if (typeof param !== 'number') {
-      query.startTime = param.startTime;
-      query.endTime = param.endTime;
-      delete param.startTime;
-      delete param.endTime;
+      query.tradeBeginDate = param.tradeBeginDate;
+      query.tradeEndDate = param.tradeEndDate;
+      query.merOrderNo = param.merOrderNo;
+      query.merNo = param.merNo;
+      query.payTradeNo = param.payTradeNo;
       query.filter = param;
       this.condition = query;
     } else {
