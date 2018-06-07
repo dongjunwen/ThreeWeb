@@ -126,7 +126,8 @@ class OrderListPage extends React.Component {
     this.columns = [
       {
         title: '序号',
-        dataIndex: 'id',
+        dataIndex: 'index',
+        render: (text, record, index) => index + 1,
       },
       {
         title: '商户订单号',
@@ -171,7 +172,7 @@ class OrderListPage extends React.Component {
   }
 
   onSelectChange = (selectedRowKeys, selectedRows) => {
-    console.log('selectedRowKeys changed: ', selectedRowKeys, selectedRows.map(item => item.orderNo));
+    console.log('selectedRowKeys changed: ', selectedRowKeys, selectedRows.map(item => item.merOrderNo));
     this.setState({ selectedRowKeys });
   }
 
@@ -193,7 +194,7 @@ class OrderListPage extends React.Component {
       .then(data => this.setState({
         data: data.data.content || [],
         total: data.data.totalElements,
-        currentPage: data.data.number,
+        currentPage: data.data.number+1,
       })
     ).catch((err) => {
       notification.error({

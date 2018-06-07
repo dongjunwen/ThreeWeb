@@ -14,9 +14,8 @@ const Routers = function ({ history, app }) {
   const routes = [
     {
       path: '/dashboard',
-     // models: () => [import('./models/dashboard')],
-     // component: () => import('./routes/dashboard/'),
-      component: () => import('./routes/order/orderList/'),
+      models: () => [import('./models/dashboard')],
+      component: () => import('./routes/dashboard/'),
     }, {
       path: '/login',
       models: () => [import('./models/login')],
